@@ -13,6 +13,6 @@ const _authReducer = createReducer(
   })
 );
 
-export function authReducer(state: any, action: Action) {
+export function authReducer(state: AuthState, action: Action): AuthState {
   return _authReducer(state, action);
 }
