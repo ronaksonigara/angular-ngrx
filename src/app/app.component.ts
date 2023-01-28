@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from './store/app.state';
+import { getLoadingSpinner } from './store/shared/shared.selectors';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-ngrx';
+  showLoader$: Observable<boolean> | undefined;
+  constructor(private store: Store<AppState>) {
+    this.showLoader$ = this.store.select(getLoadingSpinner);
+  }
 }
