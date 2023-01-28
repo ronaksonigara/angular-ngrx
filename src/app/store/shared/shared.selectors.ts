@@ -9,3 +9,8 @@ export const getLoadingSpinner = createSelector(
   getSharedState,
   (state) => state.showLoading
 );
+
+export const getErrorMessage = createSelector(
+  getSharedState,
+  (state) => state.errorMessage
+);
