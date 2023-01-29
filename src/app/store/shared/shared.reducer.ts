@@ -1,5 +1,4 @@
-import { Action, createReducer, on, State } from '@ngrx/store';
-import { AppState } from '../app.state';
+import { Action, createReducer, on } from '@ngrx/store';
 import { setErrorMessage, setLoadingSpinner } from './shared.actions';
 import { initialState, SharedState } from './shared.state';
 

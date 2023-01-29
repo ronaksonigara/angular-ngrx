@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { autoLogin } from './auth/state/auth.actions';
 import { AppState } from './store/app.state';
 import {
   getErrorMessage,
@@ -15,8 +16,10 @@ import {
 export class AppComponent {
   showLoader$: Observable<boolean> | undefined;
   errorMessage$: Observable<string> | undefined;
+
   constructor(private store: Store<AppState>) {
     this.showLoader$ = this.store.select(getLoadingSpinner);
     this.errorMessage$ = this.store.select(getErrorMessage);
+    this.store.dispatch(autoLogin());
   }
 }

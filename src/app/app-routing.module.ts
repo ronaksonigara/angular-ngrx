@@ -1,31 +1,33 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent,
   },
   {
-    path: "counter",
+    path: 'counter',
     loadChildren: () =>
-      import("./counter/counter.module").then((module) => module.CounterModule),
+      import('./counter/counter.module').then((module) => module.CounterModule),
   },
   {
-    path: "posts",
+    path: 'posts',
     loadChildren: () =>
-      import("./posts/posts.module").then((module) => module.PostsModule),
+      import('./posts/posts.module').then((module) => module.PostsModule),
+    canActivate: [AuthGuard],
   },
   {
-    path: "auth",
+    path: 'auth',
     loadChildren: () =>
-      import("./auth/auth.module").then((module) => module.AuthModule),
+      import('./auth/auth.module').then((module) => module.AuthModule),
   },
   {
-    path: "**",
-    redirectTo: "",
-    pathMatch: "full",
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];
 

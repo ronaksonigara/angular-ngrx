@@ -1,14 +1,16 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { PostsRoutingModule } from "./posts-routing.module";
-import { AddPostComponent } from "./add-post/add-post.component";
-import { EditPostComponent } from "./edit-post/edit-post.component";
-import { PostsListComponent } from "./posts-list/posts-list.component";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { StoreModule } from "@ngrx/store";
-import { postsReducer } from "./state/posts.reducer";
-import { POST_STATE_NAME } from "./state/posts.selectors";
+import { PostsRoutingModule } from './posts-routing.module';
+import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { PostsListComponent } from './posts-list/posts-list.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { postsReducer } from './state/posts.reducer';
+import { POST_STATE_NAME } from './state/posts.selectors';
+import { PostsEffects } from './state/posts.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [PostsListComponent, AddPostComponent, EditPostComponent],
@@ -17,6 +19,7 @@ import { POST_STATE_NAME } from "./state/posts.selectors";
     ReactiveFormsModule,
     FormsModule,
     PostsRoutingModule,
+    EffectsModule.forFeature([PostsEffects]),
     StoreModule.forFeature(POST_STATE_NAME, postsReducer),
   ],
 })
